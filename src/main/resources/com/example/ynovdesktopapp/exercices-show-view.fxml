@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.ynovdesktopapp.ExercicesShowViewController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="welcomeText"/>
+    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <TableView fx:id="tableView">
+        <columns>
+            <TableColumn text="Nom" fx:id="nomColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nomExercice"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Photo" fx:id="uRLPhoto">
+                <cellValueFactory>
+                    <PropertyValueFactory property="uRLPhoto"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Description" fx:id="descriptionColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="description"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Haut du Corps" fx:id="hautDuCorps">
+                <cellValueFactory>
+                    <PropertyValueFactory property="hautDuCorps"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Bas du Corps" fx:id="basDuCorps">
+                <cellValueFactory>
+                    <PropertyValueFactory property="basDuCorps"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+
+</VBox>
+
+
