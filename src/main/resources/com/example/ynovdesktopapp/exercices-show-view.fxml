@@ -12,14 +12,18 @@
 
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import java.net.URL?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.ynovdesktopapp.ExercicesShowViewController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<!--    <padding>-->
+<!--        <Insets bottom="50.0" left="100.0" right="100.0" top="50.0"/>-->
+<!--    </padding>-->
 
     <Label fx:id="welcomeText"/>
     <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Button text="Ensemble du corps" onAction="#onAllBoddyClick"/>
+    <Button text="Haut du corps" onAction="#onTopBoddyClick"/>
+    <Button text="Bas du corps" onAction="#onBotBoddyClick"/>
     <TableView fx:id="tableView">
         <columns>
             <TableColumn text="Nom" fx:id="nomColumn">
@@ -27,12 +31,12 @@
                     <PropertyValueFactory property="nomExercice"/>
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="Photo" fx:id="uRLPhoto">
+            <TableColumn text="Photo" fx:id="uRLPhotoColumn">
                 <cellValueFactory>
                     <PropertyValueFactory property="uRLPhoto"/>
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="Description" fx:id="descriptionColumn">
+            <TableColumn text="Muscles solicites" fx:id="musclesSolicites">
                 <cellValueFactory>
                     <PropertyValueFactory property="description"/>
                 </cellValueFactory>

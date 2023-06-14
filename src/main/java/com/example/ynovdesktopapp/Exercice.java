@@ -1,19 +1,19 @@
 package com.example.ynovdesktopapp;
 
-public class Exercices {
+public class Exercice {
 
     private int Id;
     private String Exercice;
     private String URLPhoto;
-    private String Description;
+    private String musclesSolicites;
     private boolean HautDuCorps;
     private boolean BasDuCorps;
 
-    public Exercices(int Id, String Exercice, String URLPhoto, String Description, Boolean hautDuCorps, Boolean basDuCorps) {
+    public Exercice(int Id, String Exercice, String URLPhoto, String Description, Boolean hautDuCorps, Boolean basDuCorps) {
         this.Id = Id;
         this.Exercice = Exercice;
         this.URLPhoto = URLPhoto;
-        this.Description = Description;
+        this.musclesSolicites = Description;
         this.HautDuCorps = hautDuCorps;
         this.BasDuCorps = basDuCorps;
     }
@@ -34,12 +34,12 @@ public class Exercices {
         this.Exercice = exercice;
     }
 
-    public String getDescription() {
-        return Description;
+    public String getMusclesSolicites() {
+        return musclesSolicites;
     }
 
-    public void setDescription(String description) {
-        this.Description = description;
+    public void setMusclesSolicites(String musclesSolicites) {
+        this.musclesSolicites = musclesSolicites;
     }
 
     public String getURLPhoto() {

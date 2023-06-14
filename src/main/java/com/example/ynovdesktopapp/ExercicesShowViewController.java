@@ -3,7 +3,7 @@ package com.example.ynovdesktopapp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,29 +11,36 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Screen;
 
 public class ExercicesShowViewController {
 
     private Connection connexion;
-    public List<Exercices> exercices = new ArrayList<>();
+    private String condition ="";
+    public List<Exercice> exercices = new ArrayList<>();
+
+    // Récupération des dimensions de l'écran
+    double tabWidth = (Screen.getPrimary().getVisualBounds().getWidth() * 65 / 100);
+    double tabHeight = (Screen.getPrimary().getVisualBounds().getHeight() * 90 / 100);
 
     public void init() {
+        tableView.setPrefHeight(tabHeight);
+        tableView.setPrefWidth(tabWidth);
+        tableView.setMaxSize(tabWidth,tabHeight);
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("Exercice"));
-        uRLPhoto.setCellValueFactory(new PropertyValueFactory<>("URLPhoto"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        uRLPhotoColumn.setCellValueFactory(new PropertyValueFactory<>("URLPhoto"));
+        musclesSolicites.setCellValueFactory(new PropertyValueFactory<>("musclesSolicites"));
         basDuCorps.setCellValueFactory(new PropertyValueFactory<>("hautDuCorps"));
         hautDuCorps.setCellValueFactory(new PropertyValueFactory<>("basDuCorps"));
-        uRLPhoto.setCellFactory(column -> {
-            return new TableCell<Exercices, String>() {
+        uRLPhotoColumn.setCellFactory(column -> {
+            return new TableCell<Exercice, String>() {
                 @Override
                 protected void updateItem(String url, boolean empty) {
                     super.updateItem(url, empty);
@@ -44,7 +51,7 @@ public class ExercicesShowViewController {
                         // Sinon, charger l'image depuis l'URL et l'afficher dans un ImageView
                         Image image = new Image(url);
                         ImageView imageView = new ImageView(image);
-                        imageView.setFitHeight(50); // ajuster la hauteur de l'image
+                        imageView.setFitHeight(tabWidth * 12 / 100); // ajuster la hauteur de l'image
                         imageView.setPreserveRatio(true); // conserver le ratio de l'image
                         setGraphic(imageView);
                     }
@@ -52,6 +59,54 @@ public class ExercicesShowViewController {
             };
         });
 
+        nomColumn.setMinWidth(tabWidth * 25 / 100.0);
+        uRLPhotoColumn.setMinWidth(tabWidth * 20 / 100.0);
+        musclesSolicites.setMinWidth(tabWidth * 31 / 100.0);
+        hautDuCorps.setMinWidth(tabWidth * 12 / 100.0);
+        basDuCorps.setMinWidth(tabWidth * 12 / 100.0);
+
+        nomColumn.setStyle("-fx-font-size: 26; -fx-alignment: center; -fx-wrap-text: true;");
+        uRLPhotoColumn.setStyle("-fx-font-size: 18; -fx-alignment: center; -fx-wrap-text: true;");
+        musclesSolicites.setStyle("-fx-font-size: 18; -fx-alignment: center; -fx-wrap-text: true;");
+        hautDuCorps.setStyle("-fx-font-size: 18; -fx-alignment: center; -fx-wrap-text: true;");
+        basDuCorps.setStyle("-fx-font-size: 18; -fx-alignment: center; -fx-wrap-text: true;");
+        basDuCorps.setStyle("-fx-font-size: 18; -fx-alignment: center; -fx-wrap-text: true;");
+
+        this.doQuerry();
+
+    }
+
+    @FXML
+    private Label welcomeText;
+
+    @FXML
+    protected void onHelloButtonClick() {
+        welcomeText.setText("Go Muscu");
+    }
+
+    @FXML
+    protected void onAllBoddyClick() {
+        this.condition = "";
+        this.doQuerry();
+        welcomeText.setText("Exercices pour tous le corps :");
+    }
+
+    @FXML
+    protected void onTopBoddyClick() {
+        this.condition = " WHERE Haut_du_corps = 0";
+        this.doQuerry();
+        welcomeText.setText("Exercices pour le haut de corps :");
+    }
+
+    @FXML
+    protected void onBotBoddyClick() {
+        this.condition = " WHERE Bas_du_corps = 0";
+        this.doQuerry();
+        welcomeText.setText("Exercices pour le bas de corps :");
+    }
+
+    public void doQuerry() {
+        exercicesToViewList.clear();
         try {
             Class.forName("org.sqlite.JDBC");
             connexion = DriverManager.getConnection("jdbc:sqlite:C:desktopMuscu.sqlite");
@@ -63,13 +118,6 @@ public class ExercicesShowViewController {
         fermerConnexion();
     }
 
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Go Muscu");
-    }
 
 
 
@@ -78,24 +126,22 @@ public class ExercicesShowViewController {
 
 
 
-
-
-
-    public List<Exercices> recupererDonnees() {
-        List<Exercices> listeDonnees = new ArrayList<>();
+    public List<Exercice> recupererDonnees() {
+        List<Exercice> listeDonnees = new ArrayList<>();
         try {
             Statement statement = connexion.createStatement();
-            String requete = "SELECT * FROM Exercices";
+            String requete = "SELECT * FROM Exercices"+condition;
             ResultSet resultat = statement.executeQuery(requete);
             while (resultat.next()) {
                 int id = resultat.getInt("Id");
                 String exercice = resultat.getString("Nom_exercice");
                 String urlPhoto = resultat.getString("URL_Photo");
-                String description = resultat.getString("Description");
+                String musclesSolicites = resultat.getString("Muscles_solicites");
                 Boolean hautDuCorps = resultat.getBoolean("Haut_du_corps");
                 Boolean basDuCorps = resultat.getBoolean("Bas_du_corps");
 
-                Exercices objet = new Exercices(id, exercice, urlPhoto, description, hautDuCorps, basDuCorps);
+                Exercice objet = new Exercice(id, exercice, urlPhoto, musclesSolicites, hautDuCorps, basDuCorps);
+                System.out.println("objet ok");
                 ajouterExercice(objet);
                 listeDonnees.add(objet);
             }
@@ -121,27 +167,23 @@ public class ExercicesShowViewController {
 
 
     @FXML
-    private TableView<Exercices> tableView;
+    private TableView<Exercice> tableView;
     @FXML
-    private TableColumn<Exercices, String> nomColumn;
+    private TableColumn<Exercice, String> nomColumn;
     @FXML
-    private TableColumn<Exercices, String> uRLPhoto;
+    private TableColumn<Exercice, String> uRLPhotoColumn;
     @FXML
-    private TableColumn<Exercices, String> descriptionColumn;
+    private TableColumn<Exercice, String> musclesSolicites;
     @FXML
-    private TableColumn<Exercices, String> hautDuCorps;
+    private TableColumn<Exercice, String> hautDuCorps;
     @FXML
-    private TableColumn<Exercices, String> basDuCorps;
-    private ObservableList<Exercices> exercicesToViewList = FXCollections.observableArrayList();
+    private TableColumn<Exercice, String> basDuCorps;
+    private ObservableList<Exercice> exercicesToViewList = FXCollections.observableArrayList();
 
-    public void ajouterExercice(Exercices exerciceToViewElement) {
-        System.out.println(exerciceToViewElement);
+    public void ajouterExercice(Exercice exerciceToViewElement) {
+        System.out.println("ajout in view de l'objet");
         exercicesToViewList.add(exerciceToViewElement);
-        System.out.println(exercicesToViewList);
-//        tableView.getColumns().get(1).setCellFactory(new PropertyValueFactory<Exercices, String>("Description"));
-
         tableView.setItems(exercicesToViewList);
-        tableView.sort();
     }
 
 }
