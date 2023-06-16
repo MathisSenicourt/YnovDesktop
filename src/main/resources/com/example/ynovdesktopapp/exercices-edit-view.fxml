@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ynovdesktopapp.ExercicesEditViewController"
+      stylesheets="@styles-edit.css">
+    <HBox spacing="10" fx:id="idBox" styleClass="hbox-edit">
+        <TextField fx:id="idField" promptText="ID à modifié" />
+    </HBox>
+    <HBox spacing="0" fx:id="titleBox" styleClass="hbox-edit">
+        <Label fx:id="titre" text="Remplir les champs ci-dessous uniquement pour une modification"/>
+    </HBox>
+    <HBox spacing="10" fx:id="hbox" styleClass="hbox-edit">
+        <TextField fx:id="nomExerciceField" promptText="Nom de l'exercice" />
+        <TextField fx:id="musclesSolicitesField" promptText="Muscles sollicités" />
+        <TextField fx:id="urlPhotoField" promptText="URL de la photo" />
+        <CheckBox fx:id="hautDuCorpsCheckbox" text="Haut du corps" />
+        <CheckBox fx:id="basDuCorpsCheckbox" text="Bas du corps" />
+    </HBox>
+    <HBox spacing="10" styleClass="button-container">
+                        <Button fx:id="modifierExerciceButton" text="Modifier exercice" onAction="#editerExercice"/>
+                        <Button fx:id="supprimerExerciceButton" text="Supprimer exercice" onAction="#supprimerExercice"/>
+    </HBox>
+
+    <TableView fx:id="vueTableau">
+        <columns>
+            <TableColumn text="ID" fx:id="idColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="idExercice"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Nom" fx:id="nomColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="nomExercice"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Photo" fx:id="uRLPhotoColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="uRLPhoto"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Muscles sollicités" fx:id="musclesSolicites">
+                <cellValueFactory>
+                    <PropertyValueFactory property="description"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Haut du Corps" fx:id="hautDuCorps">
+                <cellValueFactory>
+                    <PropertyValueFactory property="hautDuCorps"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Bas du Corps" fx:id="basDuCorps">
+                <cellValueFactory>
+                    <PropertyValueFactory property="basDuCorps"/>
+                </cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+</VBox>
+
+
+
+

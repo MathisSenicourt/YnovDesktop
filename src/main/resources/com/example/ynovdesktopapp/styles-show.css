@@ -1,0 +1,43 @@
+/* styles-show.css */
+
+/* Style pour le VBox principal */
+VBox {
+    -fx-alignment: center;
+    -fx-spacing: 20.0;
+}
+
+/* Style pour le Label */
+#titre {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Style pour les boutons */
+.button-container {
+    -fx-spacing: 10.0;
+    -fx-padding: 10px 0;
+}
+
+/* Style pour les colonnes */
+#nomColumn {
+    -fx-font-size: 26;
+    -fx-alignment: center;
+    -fx-wrap-text: true;
+}
+
+#uRLPhotoColumn, #musclesSolicites, #hautDuCorps, #basDuCorps {
+    -fx-font-size: 18;
+    -fx-alignment: center;
+    -fx-wrap-text: true;
+}
+
+/* Style pour les boutons sur une seule ligne */
+.button-container > .button {
+    -fx-margin: 0 10px;
+}
+
+/* Style pour les cellules */
+.table-cell {
+    -fx-alignment: center-left;
+    -fx-wrap-text: true;
+}

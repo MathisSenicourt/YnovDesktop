@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ynovdesktopapp.ExercicesAddViewController"
+      stylesheets="@styles-add.css">
+    <HBox spacing="10" fx:id="hbox" styleClass="hbox">
+        <TextField fx:id="nomExerciceField" promptText="Nom de l'exercice" />
+        <TextField fx:id="musclesSolicitesField" promptText="Muscles sollicités" />
+        <TextField fx:id="urlPhotoField" promptText="URL de la photo" />
+    </HBox>
+    <HBox spacing="10" styleClass="checkbox-container">
+        <CheckBox fx:id="hautDuCorpsCheckbox" text="Haut du corps" />
+        <CheckBox fx:id="basDuCorpsCheckbox" text="Bas du corps" />
+    </HBox>
+    <HBox spacing="10" styleClass="button-container">
+        <Button fx:id="ajouterExerciceButton" text="Ajouter exercice" onAction="#ajouterExercice"/>
+    </HBox>
+</VBox>

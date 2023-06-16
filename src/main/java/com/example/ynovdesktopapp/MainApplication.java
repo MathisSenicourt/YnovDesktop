@@ -20,15 +20,14 @@ public class MainApplication extends Application {
         // Recuperer les dimensions de l'ecran
         Rectangle2D bounds = screen.getVisualBounds();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
-        FXMLLoader fxmlLoaderr = new FXMLLoader(MainApplication.class.getResource("exercices-show-view.fxml"));
-        Scene scene = new Scene(fxmlLoaderr.load(),  bounds.getWidth()-75, bounds.getHeight()-75);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("exercices-show-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),  bounds.getWidth()-75, bounds.getHeight()-75);
         primaryStage.setTitle("My Muscless");
         primaryStage.setScene(scene);
         //primaryStage.setFullScreen(true);
 
         // Obtenir le contrôleur après le chargement du fichier FXML
-        ExercicesShowViewController controller = fxmlLoaderr.getController();
+        ExercicesShowViewController controller = fxmlLoader.getController();
 
         // Appeler la methode initialize() du contrôleur manuellement
         controller.init();
