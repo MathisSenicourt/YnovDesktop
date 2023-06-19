@@ -6,6 +6,17 @@ plugins {
   id 'org.beryx.jlink' version '2.25.0'
 }
 
+plugins {
+  id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+shadowJar {
+  manifest {
+    attributes 'Main-Class': 'com.example.ynovdesktopapp.MainApplication' // Remplacez 'com.example.Main' par votre classe principale
+  }
+}
+
+
 group 'com.example'
 version '1.0-SNAPSHOT'
 
@@ -26,7 +37,7 @@ tasks.withType(JavaCompile) {
 
 application {
   mainModule = 'com.example.ynovdesktopapp'
-  mainClass = 'com.example.ynovdesktopapp.HelloApplication'
+  mainClass = 'com.example.ynovdesktopapp.MainApplication'
 }
 
 javafx {
