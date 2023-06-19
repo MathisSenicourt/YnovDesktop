@@ -14,6 +14,7 @@
         <Button text="Bas du corps" onAction="#onBotBoddyClick"/>
         <Button text="Ajouter exercices" onAction="#onAddWindowClick" />
         <Button text="Modifier exercices" onAction="#onEditWindowClick" />
+        <Button text="Infos system" onAction="#onSystem" />
     </HBox>
 
     <Label fx:id="titre"/>

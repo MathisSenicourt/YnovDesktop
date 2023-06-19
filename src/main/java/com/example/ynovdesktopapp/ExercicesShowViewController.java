@@ -118,6 +118,24 @@ public class ExercicesShowViewController {
     }
 
     @FXML
+    public void onSystem()throws IOException {
+
+        SystemInfoController nouvelleFenetreInfosSystem = new SystemInfoController();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("systemInfoView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),  400, 600);
+
+        nouvelleFenetreInfosSystem.setTitle("Infos system");
+        nouvelleFenetreInfosSystem.setScene(scene);
+
+        SystemInfoController controller = fxmlLoader.getController();
+
+        controller.init();
+
+        nouvelleFenetreInfosSystem.show();
+    }
+
+    @FXML
     public void onEditWindowClick()throws IOException {
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();

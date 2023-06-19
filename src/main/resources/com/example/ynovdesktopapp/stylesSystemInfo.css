@@ -1,0 +1,45 @@
+/* styles.css */
+
+/* Style pour le VBox principal */
+VBox {
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+
+/* Style pour les TextField */
+TextField {
+    -fx-pref-width: 200;
+}
+
+/* Style pour les Labels */
+Label {
+    -fx-font-weight: bold;
+}
+
+/* Style pour le Text */
+Text {
+    -fx-font-size: 14;
+    -fx-fill: #333333;
+}
+
+/* Style pour les HBox */
+.hbox {
+    -fx-spacing: 10;
+}
+
+/* Style pour les boutons */
+.button {
+    -fx-pref-width: 150;
+}
+
+/* Style pour les CheckBox */
+.checkbox-container {
+    -fx-spacing: 10;
+    -fx-padding: 10 0;
+}
+
+/* Style pour le message d'erreur */
+.error-message {
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}

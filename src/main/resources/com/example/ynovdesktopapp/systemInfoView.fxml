@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ynovdesktopapp.SystemInfoController" stylesheets="@stylesSystemInfo.css">
+    <Label text="Nom d'hôte:" />
+    <TextField fx:id="hostNameField" />
+
+    <Label text="Adresse IP:" />
+    <TextField fx:id="ipAddressField" />
+
+    <Label text="Système d'exploitation:" />
+    <Label fx:id="operatingSystemLabel" />
+
+    <Label text="Version de Java:" />
+    <Text fx:id="javaVersionText" />
+
+    <Label text="Nom de l'utilisateur:" />
+    <TextField fx:id="userNameField" />
+
+    <Label text="Répertoire de l'utilisateur:" />
+    <TextField fx:id="userDirectoryField" />
+
+    <Label text="Architecture du processeur:" />
+    <Label fx:id="processorArchitectureLabel" />
+
+    <Label text="Nombre de processeurs:" />
+    <Label fx:id="processorCountLabel" />
+
+    <Label text="Mémoire totale (RAM):" />
+    <Label fx:id="totalMemoryLabel" />
+</VBox>
